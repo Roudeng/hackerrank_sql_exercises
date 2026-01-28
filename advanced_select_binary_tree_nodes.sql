@@ -1,0 +1,11 @@
+SET NOCOUNT ON;
+
+SELECT N,
+    CASE WHEN P IS NULL THEN 'Root'
+         WHEN N NOT IN (SELECT P FROM BST WHERE P IS NOT NULL) THEN 'Leaf' -- 集合裡有null會報錯
+         ELSE 'Inner'
+    END AS node
+FROM BST
+ORDER BY N;
+
+go
